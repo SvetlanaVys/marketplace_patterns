@@ -1,0 +1,16 @@
+spring:
+  liquibase:
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: svadmin
+    password: Qwerty123
+  jpa:
+    database: postgresql
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQL10Dialect
+      hibernate.default_schema: public
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: validate

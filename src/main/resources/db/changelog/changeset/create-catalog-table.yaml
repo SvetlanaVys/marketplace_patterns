@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-catalog
+      author: Svitlana Vyskrebentseva
+      changes:
+        - createTable:
+            tableName: catalog
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: catalog_name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+
+
