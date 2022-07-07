@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-catalog
+      id: create-category
       author: Svitlana Vyskrebentseva
       changes:
         - createTable:
-            tableName: catalog
+            tableName: category
             columns:
               - column:
                   name: id
@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: catalog_name
+                  name: category_name
                   type: varchar(200)
                   constraints:
                     nullable: false

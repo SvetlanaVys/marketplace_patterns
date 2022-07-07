@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-category
+      author: Svitlana Vyskrebentseva
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: category_name
+                  value: "Kitchen"
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: category_name
+                  value: "Bathroom"

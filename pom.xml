@@ -16,6 +16,7 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
+        <hiverbate.version>6.1.1.Final</hiverbate.version>
     </properties>
     <dependencies>
         <dependency>
@@ -52,6 +53,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hiverbate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
