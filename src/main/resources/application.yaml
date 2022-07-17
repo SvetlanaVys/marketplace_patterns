@@ -6,6 +6,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: svadmin
     password: Qwerty123
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   jpa:
     database: postgresql
     properties:
