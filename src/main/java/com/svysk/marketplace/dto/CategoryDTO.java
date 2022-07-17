@@ -1,8 +1,8 @@
 package com.svysk.marketplace.dto;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class CategoryDTO {
     Long id;
     String categoryName;

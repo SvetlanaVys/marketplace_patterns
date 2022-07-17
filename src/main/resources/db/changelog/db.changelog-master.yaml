@@ -3,3 +3,7 @@ databaseChangeLog:
       file: db/changelog/changeset/category/create-category-table.yaml
   - include:
       file: db/changelog/changeset/category/insert-category-table.yaml
+  - include:
+      file: db/changelog/changeset/product/create-product-table.yaml
+  - include:
+      file: db/changelog/changeset/product/insert-product-table.yaml

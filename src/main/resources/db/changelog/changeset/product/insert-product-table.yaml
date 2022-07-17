@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-product
+      author: Svitlana Vyskrebentseva
+      changes:
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Fridge SAMSUNG RB29FSRNDSA/UA"
+              - column:
+                  name: category_id
+                  value: 1
+              - column:
+                  name: brand
+                  value: "Samsung"
+              - column:
+                  name: price
+                  value: 17999.99
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Fridge LG GC-L257CBEC"
+              - column:
+                  name: category_id
+                  value: 1
+              - column:
+                  name: brand
+                  value: "LG"
+              - column:
+                  name: price
+                  value: 54999.50

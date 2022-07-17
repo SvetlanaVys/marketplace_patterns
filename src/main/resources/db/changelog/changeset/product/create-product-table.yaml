@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-product
+      author: Svitlana Vyskrebentseva
+      changes:
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brand
+                  type: varchar
+              - column:
+                  name: price
+                  type: float
+              - addForeignKeyConstraint:
+                  baseColumnNames: category_id
+                  baseTableName: product
+                  baseTableSchemaName: public
+                  constraintName: fk_product_category
+                  deferrable: true
+                  initiallyDeferred: true
+                  onDelete: CASCADE
+                  onUpdate: RESTRICT
+                  referencedColumnNames: id
+                  referencedTableName: category
+                  referencedTableSchemaName: public
+                  validate: true
