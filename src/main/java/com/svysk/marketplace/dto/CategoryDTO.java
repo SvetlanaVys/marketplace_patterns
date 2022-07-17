@@ -7,17 +7,25 @@ public class CategoryDTO {
     Long id;
     String categoryName;
 
-    public CategoryDTO buildId(Long id) {
-        this.id = id;
-        return this;
-    }
+    public static class Builder {
+        private CategoryDTO categoryDTO;
 
-    public CategoryDTO buildCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-        return this;
-    }
+        public Builder() {
+            categoryDTO = new CategoryDTO();
+        }
 
-    public CategoryDTO build() {
-        return this;
+        public Builder buildId(Long id) {
+            categoryDTO.id = id;
+            return this;
+        }
+
+        public Builder buildCategoryName(String categoryName) {
+            categoryDTO.categoryName = categoryName;
+            return this;
+        }
+
+        public CategoryDTO build() {
+            return categoryDTO;
+        }
     }
 }

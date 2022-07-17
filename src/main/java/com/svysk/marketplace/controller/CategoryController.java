@@ -29,7 +29,7 @@ public class CategoryController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    CategoryDTO findCategoryByName(@PathVariable("id") Long id) {
+    CategoryDTO findCategoryById(@PathVariable("id") Long id) {
         return service.getCategoryById(id);
     }
 
