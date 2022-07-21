@@ -19,19 +19,19 @@ public class CategoryService {
     public List<CategoryDTO> getAll() {
         List<Category> categories = repository.getAll();
         return categories.stream()
-                .map(CategoryMapper::toCategoryDTO)
+                .map(CategoryMapper.getInstance()::toCategoryDTO)
                 .collect(Collectors.toList());
     }
 
     public CategoryDTO getCategoryById(Long id) {
         Category category = repository.getCategoryById(id);
-        return CategoryMapper.toCategoryDTO(category);
+        return CategoryMapper.getInstance().toCategoryDTO(category);
     }
 
     public List<CategoryDTO> getCategoriesByCategoryName(String name) {
         List<Category> categories = repository.getCategoriesByCategoryName(name);
         return categories.stream()
-                .map(CategoryMapper::toCategoryDTO)
+                .map(CategoryMapper.getInstance()::toCategoryDTO)
                 .collect(Collectors.toList());
     }
 
@@ -43,9 +43,9 @@ public class CategoryService {
             oldCategory = (Category) updatedCategory.copy();
             updatedCategory.setCategoryName(newCategory.getCategoryName());
             repository.save(updatedCategory);
-            return CategoryMapper.toCategoryDTO(oldCategory);
+            return CategoryMapper.getInstance().toCategoryDTO(oldCategory);
         } else {
-            updatedCategory = CategoryMapper.toCategory(newCategory);
+            updatedCategory = CategoryMapper.getInstance().toCategory(newCategory);
             updatedCategory.setId(id);
             repository.save(updatedCategory);
         }

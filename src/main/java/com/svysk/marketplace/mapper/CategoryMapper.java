@@ -4,15 +4,26 @@ import com.svysk.marketplace.dto.CategoryDTO;
 import com.svysk.marketplace.model.Category;
 
 public class CategoryMapper {
+    private static CategoryMapper instance;
 
-    public static CategoryDTO toCategoryDTO(Category category) {
+    private CategoryMapper() {
+    }
+
+    public static CategoryMapper getInstance() {
+        if(instance == null) {
+            instance = new CategoryMapper();
+        }
+        return instance;
+    }
+
+    public CategoryDTO toCategoryDTO(Category category) {
         return new CategoryDTO.Builder()
                 .buildId(category.getId())
                 .buildCategoryName(category.getCategoryName())
                 .build();
     }
 
-    public static Category toCategory(CategoryDTO categoryDTO) {
+    public Category toCategory(CategoryDTO categoryDTO) {
         Category category = new Category();
         category.setId(categoryDTO.getId());
         category.setCategoryName(categoryDTO.getCategoryName());

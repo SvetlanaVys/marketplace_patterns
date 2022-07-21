@@ -1,6 +1,5 @@
 package com.svysk.marketplace.model;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -25,9 +24,8 @@ public class Product {
     @Column
     String name;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false )
     Category category;
 
     @Column

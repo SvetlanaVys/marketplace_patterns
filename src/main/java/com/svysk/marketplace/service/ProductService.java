@@ -24,29 +24,28 @@ public class ProductService {
 
     public List<ProductDTO> getAll() {
         List<Product> products = repository.getAll();
-        return products.stream()
-                .map(ProductMapper::toProductDTO)
+        return products.parallelStream()
+                .map(ProductMapper.getInstance()::toProductDTO)
                 .collect(Collectors.toList());
     }
 
     public List<ProductDTO> getProductByCategory(Long categoryId) {
         List<Product> products = repository.getProductByCategory(categoryId);
-        return products.stream()
-                .map(ProductMapper::toProductDTO)
+        return products.parallelStream()
+                .map(ProductMapper.getInstance()::toProductDTO)
                 .collect(Collectors.toList());
     }
 
     public ProductDTO getProductById(Long id) {
         Product product = repository.getProductById(id);
-        return ProductMapper.toProductDTO(product);
+        return ProductMapper.getInstance().toProductDTO(product);
     }
 
     public ProductDTO save(ProductDTO newProduct) {
-        Product product = ProductMapper.toProduct(newProduct);
         Category category = categoryRepository.getCategoryById(newProduct.getCategoryId());
-        product.setCategory(category);
+        Product product = ProductMapper.getInstance().toProduct(newProduct, category);
         product = repository.save(product);
-        return ProductMapper.toProductDTO(product);
+        return ProductMapper.getInstance().toProductDTO(product);
     }
 
 
