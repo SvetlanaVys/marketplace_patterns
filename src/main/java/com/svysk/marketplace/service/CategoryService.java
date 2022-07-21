@@ -34,4 +34,22 @@ public class CategoryService {
                 .map(CategoryMapper::toCategoryDTO)
                 .collect(Collectors.toList());
     }
+
+    public CategoryDTO update(CategoryDTO newCategory, Long id) {
+        Category updatedCategory = repository.getCategoryById(id);
+        Category oldCategory;
+
+        if(updatedCategory != null) {
+            oldCategory = (Category) updatedCategory.copy();
+            updatedCategory.setCategoryName(newCategory.getCategoryName());
+            repository.save(updatedCategory);
+            return CategoryMapper.toCategoryDTO(oldCategory);
+        } else {
+            updatedCategory = CategoryMapper.toCategory(newCategory);
+            updatedCategory.setId(id);
+            repository.save(updatedCategory);
+        }
+
+        return null;
+    }
 }

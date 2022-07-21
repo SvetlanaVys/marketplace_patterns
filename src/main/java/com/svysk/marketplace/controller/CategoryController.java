@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,5 +39,11 @@ public class CategoryController {
     @GetMapping("/name/{name}")
     List<CategoryDTO>  findCategoryByName(@PathVariable("name") String name) {
         return service.getCategoriesByCategoryName(name);
+    }
+
+    // Need to update the current entity and return the old one in response
+    @PutMapping("/update/{id}")
+    CategoryDTO updateCategory(@RequestBody CategoryDTO newCategory, @PathVariable Long id) {
+        return service.update(newCategory, id);
     }
 }
