@@ -2,10 +2,11 @@ package com.svysk.marketplace.mapper;
 
 import com.svysk.marketplace.dto.BrandDTO;
 import com.svysk.marketplace.model.Brand;
+import com.svysk.marketplace.pattern_extra.decorator.BrandValidateInterface;
 
-public class BrandMapper {
+public class BrandMapper implements BrandValidateInterface {
 
-    public static BrandDTO toBrandDTO(Brand brand) {
+    public BrandDTO toBrandDTO(Brand brand) {
         return new BrandDTO.Builder()
                 .buildId(brand.getId())
                 .buildBrandName(brand.getBrandName())
@@ -13,7 +14,7 @@ public class BrandMapper {
                 .build();
     }
 
-    public static Brand toBrand(BrandDTO brandDTO) {
+    public Brand toBrand(BrandDTO brandDTO) {
         Brand brand = new Brand();
         brand.setId(brandDTO.getId());
         brand.setBrandName(brandDTO.getBrandName());

@@ -1,6 +1,6 @@
 package com.svysk.marketplace.model;
 
-import com.svysk.marketplace.prototype.Prototype;
+import com.svysk.marketplace.pattern_extra.prototype.Prototype;
 import lombok.Data;
 
 import javax.persistence.Column;
