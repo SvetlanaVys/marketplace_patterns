@@ -1,9 +1,11 @@
 package com.svysk.marketplace.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 @Getter
 public class CategoryDTO {
+    @JsonIgnore
     Long id;
     String categoryName;
 

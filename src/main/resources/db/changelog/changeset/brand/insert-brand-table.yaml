@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-brand
+      author: Svitlana Vyskrebentseva
+      changes:
+        - insert:
+            tableName: brand
+            columns:
+              - column:
+                  name: brand_name
+                  value: "Samsung"
+              - column:
+                  name: brand_url
+                  value: "https://www.samsung.com"
+        - insert:
+            tableName: brand
+            columns:
+              - column:
+                  name: brand_name
+                  value: "LG"
+              - column:
+                  name: brand_url
+                  value: "https://www.lg.com"

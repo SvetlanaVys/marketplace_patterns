@@ -28,8 +28,9 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false )
     Category category;
 
-    @Column
-    String brand;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
+    Brand brand;
 
     @Column
     Float price;

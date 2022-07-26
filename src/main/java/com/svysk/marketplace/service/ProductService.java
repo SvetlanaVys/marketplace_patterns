@@ -42,8 +42,7 @@ public class ProductService {
     }
 
     public ProductDTO save(ProductDTO newProduct) {
-        Category category = categoryRepository.getCategoryById(newProduct.getCategoryId());
-        Product product = ProductMapper.getInstance().toProduct(newProduct, category);
+        Product product = ProductMapper.getInstance().toProduct(newProduct);
         product = repository.save(product);
         return ProductMapper.getInstance().toProductDTO(product);
     }

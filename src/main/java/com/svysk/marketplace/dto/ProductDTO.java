@@ -10,7 +10,7 @@ public class ProductDTO {
     Long id;
     String name;
     Long categoryId;
-    String brand;
+    Long brandId;
     Float price;
 
     public static class Builder {
@@ -35,8 +35,8 @@ public class ProductDTO {
             return this;
         }
 
-        public ProductDTO.Builder buildBrand(String brand) {
-            productDTO.brand = brand;
+        public ProductDTO.Builder buildBrand(Long brandId) {
+            productDTO.brandId = brandId;
             return this;
         }
 

@@ -13,8 +13,8 @@ databaseChangeLog:
                   name: category_id
                   value: 1
               - column:
-                  name: brand
-                  value: "Samsung"
+                  name: brand_id
+                  value: 1
               - column:
                   name: price
                   value: 17999.99
@@ -28,8 +28,8 @@ databaseChangeLog:
                   name: category_id
                   value: 1
               - column:
-                  name: brand
-                  value: "LG"
+                  name: brand_id
+                  value: 2
               - column:
                   name: price
                   value: 54999.50

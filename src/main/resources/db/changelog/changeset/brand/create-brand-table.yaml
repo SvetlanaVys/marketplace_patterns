@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-brand
+      author: Svitlana Vyskrebentseva
+      changes:
+        - createTable:
+            tableName: brand
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: brand_name
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brand_url
+                  type: varchar

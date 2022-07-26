@@ -22,8 +22,8 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: brand
-                  type: varchar
+                  name: brand_id
+                  type: bigint
               - column:
                   name: price
                   type: float
@@ -38,5 +38,18 @@ databaseChangeLog:
             onUpdate: RESTRICT
             referencedColumnNames: id
             referencedTableName: category
+            referencedTableSchemaName: public
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: brand_id
+            baseTableName: product
+            baseTableSchemaName: public
+            constraintName: fk_product_brand
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: SET NULL
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: brand
             referencedTableSchemaName: public
             validate: true
