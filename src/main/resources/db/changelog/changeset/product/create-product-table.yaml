@@ -27,16 +27,16 @@ databaseChangeLog:
               - column:
                   name: price
                   type: float
-              - addForeignKeyConstraint:
-                  baseColumnNames: category_id
-                  baseTableName: product
-                  baseTableSchemaName: public
-                  constraintName: fk_product_category
-                  deferrable: true
-                  initiallyDeferred: true
-                  onDelete: CASCADE
-                  onUpdate: RESTRICT
-                  referencedColumnNames: id
-                  referencedTableName: category
-                  referencedTableSchemaName: public
-                  validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: category_id
+            baseTableName: product
+            baseTableSchemaName: public
+            constraintName: fk_product_category
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: category
+            referencedTableSchemaName: public
+            validate: true
