@@ -8,32 +8,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 @Slf4j
-public class BrandValidateURLDecorator implements BrandValidateInterface {
-
-    BrandValidateInterface component;
+public class BrandValidateURLDecorator extends BrandDecorator {
 
     public BrandValidateURLDecorator(BrandValidateInterface component) {
-        this.component = component;
+        super(component);
     }
 
     @Override
-    public BrandDTO toBrandDTO(Brand brand) {
-        if(brand != null) {
-            return this.component.toBrandDTO(brand);
-        }
-
-        return null;
-    }
-
-    @Override
-    public Brand toBrand(BrandDTO brandDTO) throws MalformedURLException {
+    public Brand toBrand(BrandDTO brandDTO) throws Exception {
         try {
             new URL(brandDTO.getBrandURL());
+            return component.toBrand(brandDTO);
         } catch (MalformedURLException e) {
             log.error("Invalid brand URL");
             throw new MalformedURLException();
         }
-
-        return component.toBrand(brandDTO);
     }
 }
