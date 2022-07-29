@@ -2,19 +2,12 @@
 
 
 import com.svysk.marketplace.dto.ProductDTO;
+import com.svysk.marketplace.model.Brand;
+import com.svysk.marketplace.model.Category;
 import com.svysk.marketplace.model.Product;
-import com.svysk.marketplace.repository.BrandRepository;
-import com.svysk.marketplace.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class ProductMapper {
     private static volatile ProductMapper instance;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    BrandRepository brandRepository;
 
     private ProductMapper() {
     }
@@ -41,12 +34,12 @@ public class ProductMapper {
                 .build();
     }
 
-    public Product toProduct(ProductDTO productDTO) {
+    public Product toProduct(ProductDTO productDTO, Category category, Brand brand) {
         Product product = new Product();
         product.setId(productDTO.getId());
         product.setName(productDTO.getName());
-        product.setCategory(categoryRepository.getCategoryById(productDTO.getCategoryId()));
-        product.setBrand(brandRepository.getBrandById(productDTO.getBrandId()));
+        product.setCategory(category);
+        product.setBrand(brand);
         product.setPrice(productDTO.getPrice());
         return product;
     }

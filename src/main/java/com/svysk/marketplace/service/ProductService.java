@@ -2,8 +2,10 @@ package com.svysk.marketplace.service;
 
 import com.svysk.marketplace.dto.ProductDTO;
 import com.svysk.marketplace.mapper.ProductMapper;
+import com.svysk.marketplace.model.Brand;
 import com.svysk.marketplace.model.Category;
 import com.svysk.marketplace.model.Product;
+import com.svysk.marketplace.repository.BrandRepository;
 import com.svysk.marketplace.repository.CategoryRepository;
 import com.svysk.marketplace.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class ProductService {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    BrandRepository brandRepository;
 
 
     public List<ProductDTO> getAll() {
@@ -42,7 +47,9 @@ public class ProductService {
     }
 
     public ProductDTO save(ProductDTO newProduct) {
-        Product product = ProductMapper.getInstance().toProduct(newProduct);
+        Category category = categoryRepository.getCategoryById(newProduct.getCategoryId());
+        Brand brand = brandRepository.getBrandById(newProduct.getBrandId());
+        Product product = ProductMapper.getInstance().toProduct(newProduct, category, brand);
         product = repository.save(product);
         return ProductMapper.getInstance().toProductDTO(product);
     }
