@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-bucket_product
+      author: Svitlana Vyskrebentseva
+      changes:
+        - createTable:
+            tableName: bucket_product
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: bucket_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_count
+                  type: int
+                  defaultValue: 1
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: bucket_id
+            baseTableName: bucket_product
+            baseTableSchemaName: public
+            constraintName: fk_product_bucket
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: bucket
+            referencedTableSchemaName: public
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: product_id
+            baseTableName: bucket_product
+            baseTableSchemaName: public
+            constraintName: fk_bucket_product
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: product
+            referencedTableSchemaName: public
+            validate: true
+
+

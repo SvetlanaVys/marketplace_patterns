@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-bucket_product
+      author: Svitlana Vyskrebentseva
+      changes:
+        - insert:
+            tableName: bucket_product
+            columns:
+              - column:
+                  name: bucket_id
+                  value: 1
+              - column:
+                  name: product_id
+                  value: 1
+              - column:
+                  name: product_count
+                  value: 2
+        - insert:
+            tableName: bucket_product
+            columns:
+              - column:
+                  name: bucket_id
+                  value: 1
+              - column:
+                  name: product_id
+                  value: 2
+              - column:
+                  name: product_count
+                  value: 5

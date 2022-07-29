@@ -11,3 +11,11 @@ databaseChangeLog:
       file: db/changelog/changeset/product/create-product-table.yaml
   - include:
       file: db/changelog/changeset/product/insert-product-table.yaml
+  - include:
+      file: db/changelog/changeset/bucket/create-bucket-table.yaml
+  - include:
+      file: db/changelog/changeset/bucket/insert-bucket-table.yaml
+  - include:
+      file: db/changelog/changeset/bucket_product/create-bucket_product-table.yaml
+  - include:
+      file: db/changelog/changeset/bucket_product/insert-bucket_product-table.yaml

@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-bucket
+      author: Svitlana Vyskrebentseva
+      changes:
+        - createTable:
+            tableName: bucket
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: final_price
+                  type: float
+                  defaultValue: 0.0
+                  constraints:
+                    nullable: false

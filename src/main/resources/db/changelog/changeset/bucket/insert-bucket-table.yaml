@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-bucket
+      author: Svitlana Vyskrebentseva
+      changes:
+        - insert:
+            tableName: bucket
+            columns:
+              - column:
+                  name: final_price
+                  value: 0.0
+        - insert:
+            tableName: bucket
+            columns:
+              - column:
+                  name: final_price
+                  value: 0.0
