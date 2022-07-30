@@ -6,6 +6,7 @@ import com.svysk.marketplace.mapper.BucketProductMapper;
 import com.svysk.marketplace.model.Bucket;
 import com.svysk.marketplace.model.BucketProduct;
 import com.svysk.marketplace.model.Product;
+import com.svysk.marketplace.pattern_extra.observer.BucketProductObserversHandler;
 import com.svysk.marketplace.repository.BucketProductRepository;
 import com.svysk.marketplace.repository.BucketRepository;
 import com.svysk.marketplace.repository.ProductRepository;
@@ -27,11 +28,14 @@ public class BucketProductService {
     @Autowired
     BucketProductMapper bucketProductMapper;
 
+    @Autowired
+    BucketProductObserversHandler bpHandler;
+
     public BucketProductDTO addProduct(Long productId, Long bucketId) throws UnknownProduct {
         BucketProduct bucketProduct = bucketProductRepository.getBucketProductByBucketAndProduct(bucketId, productId);
         Bucket bucket = bucketRepository.getBrandById(bucketId);
         Product product = productRepository.getProductById(productId);
-        BucketProductDTO bucketProductDTO = null;
+        BucketProductDTO bucketProductDTO;
         if(bucketProduct != null) {
             bucketProductDTO = bucketProductMapper.toBucketProductDTO(bucketProduct);
             bucketProductDTO.incrementProductCount();
@@ -49,6 +53,7 @@ public class BucketProductService {
             }
         }
 
+        bpHandler.notifyObservers(bucketId, productId);
         return saveBucketProduct(bucketProductDTO);
     }
 
