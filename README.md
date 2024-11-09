@@ -16,5 +16,9 @@
    ```
 2. Run PostgreSQL
    ```
-   docker compose up
+   docker-compose up --build
    ```
+
+### Access Swagger:
+Once the application is up, you can access the Swagger UI at:
+http://localhost:8080/swagger-ui/index.html

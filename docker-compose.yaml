@@ -14,12 +14,16 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
-#  marketplace_app:
-#    build: .
-#    image: "marketplace_app"
-#    ports:
-#      - "8080:8080"
-#    links:
-#      - "postgres"
-#    depends_on:
-#      - "postgres"
+  marketplace_app:
+    build: .
+    image: "marketplace_app"
+    ports:
+      - "8080:8080"
+    links:
+      - "postgres"
+    depends_on:
+      - "postgres"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: svadmin
+      SPRING_DATASOURCE_PASSWORD: Qwerty123
