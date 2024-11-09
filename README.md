@@ -8,7 +8,8 @@
 3. Prototype: [Category](https://github.com/SvetlanaVys/marketplace_patterns/blob/main/src/main/java/com/svysk/marketplace/model/Category.java)
 4. Decorator: [/decorator](https://github.com/SvetlanaVys/marketplace_patterns/blob/main/src/main/java/com/svysk/marketplace/pattern_extra/decorator)
 5. Observer: [/observer](https://github.com/SvetlanaVys/marketplace_patterns/blob/main/src/main/java/com/svysk/marketplace/pattern_extra/observer)
-5. Strategy: [/strategy](https://github.com/SvetlanaVys/marketplace_patterns/blob/main/src/main/java/com/svysk/marketplace/pattern_extra/strategy)
+6. Strategy: [/strategy](https://github.com/SvetlanaVys/marketplace_patterns/blob/main/src/main/java/com/svysk/marketplace/pattern_extra/strategy)
+7. Factory method: [/factory](https://github.com/SvetlanaVys/marketplace_patterns/blob/main/src/main/java/com/svysk/marketplace/pattern_extra/factory)
 
 ### Build and Run project
 1. Build Project

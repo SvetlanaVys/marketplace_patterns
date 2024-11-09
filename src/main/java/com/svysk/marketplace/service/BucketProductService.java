@@ -2,6 +2,9 @@ package com.svysk.marketplace.service;
 
 import com.svysk.marketplace.dto.BucketProductDTO;
 import com.svysk.marketplace.exception.UnknownProduct;
+import com.svysk.marketplace.pattern_extra.factory.DeliveryFactory;
+import com.svysk.marketplace.pattern_extra.factory.DeliveryService;
+import com.svysk.marketplace.pattern_extra.factory.DeliveryType;
 import com.svysk.marketplace.mapper.BucketProductMapper;
 import com.svysk.marketplace.model.Bucket;
 import com.svysk.marketplace.model.BucketProduct;
@@ -35,7 +38,10 @@ public class BucketProductService {
 
     PaymentStrategy paymentStrategy;
 
-    public BucketProductDTO addProduct(Long productId, Long bucketId) throws UnknownProduct {
+    DeliveryFactory deliveryFactory;
+
+    @Transactional
+    public BucketProductDTO addProduct(Long productId, Long bucketId, DeliveryType deliveryType) throws UnknownProduct {
         BucketProduct bucketProduct = bucketProductRepository.getBucketProductByBucketAndProduct(bucketId, productId);
         Bucket bucket = bucketRepository.getBrandById(bucketId);
         Product product = productRepository.getProductById(productId);
@@ -58,11 +64,14 @@ public class BucketProductService {
         }
 
         bpHandler.notifyObservers(bucketId, productId);
-        return saveBucketProduct(bucketProductDTO);
+        BucketProductDTO savedBucketProductDTO = saveBucketProduct(bucketProductDTO);
+
+        DeliveryService deliveryService = DeliveryFactory.getDeliveryService(deliveryType);
+        deliveryService.deliver(savedBucketProductDTO.getId().toString());
+
+        return savedBucketProductDTO;
     }
 
-
-    @Transactional
     public BucketProductDTO saveBucketProduct(BucketProductDTO bucketProductDTO) {
         BucketProduct bucketProduct = bucketProductMapper.toBucketProduct(bucketProductDTO);
         bucketProduct.calculateFinalBucketPrice();
