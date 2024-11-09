@@ -7,11 +7,13 @@ import com.svysk.marketplace.model.Bucket;
 import com.svysk.marketplace.model.BucketProduct;
 import com.svysk.marketplace.model.Product;
 import com.svysk.marketplace.pattern_extra.observer.BucketProductObserversHandler;
+import com.svysk.marketplace.pattern_extra.strategy.PaymentStrategy;
 import com.svysk.marketplace.repository.BucketProductRepository;
 import com.svysk.marketplace.repository.BucketRepository;
 import com.svysk.marketplace.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BucketProductService {
@@ -30,6 +32,8 @@ public class BucketProductService {
 
     @Autowired
     BucketProductObserversHandler bpHandler;
+
+    PaymentStrategy paymentStrategy;
 
     public BucketProductDTO addProduct(Long productId, Long bucketId) throws UnknownProduct {
         BucketProduct bucketProduct = bucketProductRepository.getBucketProductByBucketAndProduct(bucketId, productId);
@@ -58,10 +62,16 @@ public class BucketProductService {
     }
 
 
+    @Transactional
     public BucketProductDTO saveBucketProduct(BucketProductDTO bucketProductDTO) {
         BucketProduct bucketProduct = bucketProductMapper.toBucketProduct(bucketProductDTO);
         bucketProduct.calculateFinalBucketPrice();
+        paymentStrategy.pay(bucketProduct.getBucket().getFinalPrice());
         bucketProductRepository.save(bucketProduct);
         return bucketProductMapper.toBucketProductDTO(bucketProduct);
+    }
+
+    public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
     }
 }
